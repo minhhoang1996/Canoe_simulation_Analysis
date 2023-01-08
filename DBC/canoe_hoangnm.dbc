@@ -1,0 +1,64 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Console Doors Engine
+
+
+BO_ 4 WindowState: 1 Doors
+ SG_ WindowPosition : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 3 WindowRq: 1 Console
+ SG_ WindowRequest : 0|2@1+ (1,0) [0|2] "" Vector__XXX
+
+BO_ 2 LockingState: 1 Doors
+ SG_ LockState : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 1 LockingRq: 1 Console
+ SG_ LockRequest : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 0 EngineStatus: 2 Engine
+ SG_ Velocity : 8|8@1+ (1,0) [0|200] "" Vector__XXX
+ SG_ IgnitionStatus : 0|1@1+ (1,0) [0|1] "0" Vector__XXX
+
+
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "BusType" "";
+VAL_ 4 WindowPosition 1 "Rolled Down" 0 "Rolled Up" ;
+VAL_ 3 WindowRequest 2 "Roll Window Down" 1 "Roll Window Up" 0 "Nothing" ;
+VAL_ 2 LockState 1 "Unlocked" 0 "Locked" ;
+VAL_ 1 LockRequest 1 "Request to Unlock" 0 "Request to Lock" ;
+VAL_ 0 IgnitionStatus 1 "Engine On" 0 "Engine Off" ;
+

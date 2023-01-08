@@ -1,0 +1,53 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  byte WindowState = 0;
+  byte IgnitionState;
+  
+  message LockingState LockingStat;
+  message WindowState WindowStat;
+  
+}
+
+on message EngineStatus
+{
+  // Strore Ignition State
+  if(this.IgnitionStatus)
+    IgnitionState=1;
+  else
+    IgnitionState=0;
+  
+  // Loking based on velocity
+  if(IgnitionState==1 && this.Velocity>15 && LockingStat.LockState==1) {
+    LockingStat.LockState=0;
+    output(LockingStat);
+  }
+}
+
+on message LockingRq
+{
+  if(this.LockRequest)
+    LockingStat.LockState=1; //Set state to unlock
+  else
+    LockingStat.LockState=0; //set to lock
+  output(LockingStat);
+}
+
+on message WindowRq
+{
+  if(IgnitionState){
+    if(this.WindowRequest==1) // Roll up window
+      if(WindowState>0) WindowState--;
+    if(this.WindowRequest==2) // Roll down window
+      if(WindowState<15) WindowState++;
+  }
+  WindowStat.WindowPosition=WindowState;
+  output(WindowStat);
+}
+
+
